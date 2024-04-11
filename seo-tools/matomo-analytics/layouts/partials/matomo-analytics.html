@@ -1,7 +1,10 @@
 {{ with site.Params.matomo }}
   {{ if .enable }}
-    <script data-name="matomo" type="text/plain">
+    <script type="text/plain" data-name="matomo" data-type="application/javascript">
       var _paq = window._paq = window._paq || [];
+      _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+      _paq.push(["setCookieDomain", "*.shoreyit.com"]);
+      _paq.push(["setDomains", ["*.shoreyit.com"]]);
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
       (function () {
@@ -17,5 +20,10 @@
         s.parentNode.insertBefore(g, s);
       })();
     </script>
+    <noscript>
+      <p>
+        <img referrerpolicy="no-referrer-when-downgrade" src="{{.url|safeURL}}matomo.php?idsite={{.id}}&amp;rec=1" style="border:0;" alt="" />
+      </p>
+    </noscript>
   {{ end }}
 {{ end }}
